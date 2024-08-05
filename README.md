@@ -372,7 +372,7 @@ ESP8266_ISR_Timer ISR_Timer;
 ```cpp
 void IRAM_ATTR TimerHandler()
 {
-  ISR_timer.run();
+  ISR_Timer.run();
 }
 
 #define HW_TIMER_INTERVAL_MS          50L
@@ -412,7 +412,7 @@ void setup()
   // Interval in microsecs
   if (ITimer.attachInterruptInterval(HW_TIMER_INTERVAL_MS * 1000, TimerHandler))
   {
-    startMillis = millis();
+    unsigned long startMillis = millis();
     Serial.print(F("Starting ITimer OK, millis() = ")); Serial.println(startMillis);
   }
   else
@@ -420,10 +420,10 @@ void setup()
 
   // Just to demonstrate, don't use too many ISR Timers if not absolutely necessary
   // You can use up to 16 timer for each ISR_Timer
-  ISR_timer.setInterval(TIMER_INTERVAL_2S, doingSomething2s);
-  ISR_timer.setInterval(TIMER_INTERVAL_5S, doingSomething5s);
-  ISR_timer.setInterval(TIMER_INTERVAL_11S, doingSomething11s);
-  ISR_timer.setInterval(TIMER_INTERVAL_101S, doingSomething101s);
+  ISR_Timer.setInterval(TIMER_INTERVAL_2S, doingSomething2s);
+  ISR_Timer.setInterval(TIMER_INTERVAL_5S, doingSomething5s);
+  ISR_Timer.setInterval(TIMER_INTERVAL_11S, doingSomething11s);
+  ISR_Timer.setInterval(TIMER_INTERVAL_101S, doingSomething101s);
 }  
 ```
 
